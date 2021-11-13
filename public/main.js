@@ -31,6 +31,9 @@ for (let num = 0; num < 10; num++) {
     });
 }
 const util = new function () {
+    this.ajax = params=>{
+        return fetch(params);
+    }
     this.parse = (tpl, obj) => {
         let str = tpl;
         for (let k in obj) {
