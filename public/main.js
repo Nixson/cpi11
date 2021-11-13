@@ -16,6 +16,7 @@ const data = (new function () {
     //U
     this.update = obj => {
         arr[obj.Id] = obj;
+        util.ajax({method: "PUT",url:"/",data: JSON.stringify(obj)});
         return obj;
     }
     //D
