@@ -31,8 +31,8 @@ for (let num = 0; num < 10; num++) {
     });
 }
 const util = new function () {
-    this.ajax = (params,callback)=>{
-        fetch(params).then(data=>data.toJson()).then(callback);
+    this.ajax = (params, callback) => {
+        fetch(params).then(data => data.toJson()).then(callback);
     }
     this.parse = (tpl, obj) => {
         let str = tpl;
@@ -54,7 +54,7 @@ const student = new function () {
             phone: util.id("phone").value,
             email: util.id("email").value,
         };
-        if(util.id("Id").value === "-1") data.create(st)
+        if (util.id("Id").value === "-1") data.create(st)
         else {
             st.Id = util.id("Id").value;
             data.update(st);
@@ -68,18 +68,18 @@ const student = new function () {
         this.render();
         util.id("remove").style.display = "none";
     }
-    const init = ()=>{
+    const init = () => {
         this.render();
-        util.q("button.add").forEach(el=>{
-            util.listen(el,"click",add);
+        util.q("button.add").forEach(el => {
+            util.listen(el, "click", add);
         });
-        util.q(".btn-close, .close").forEach(el=>{
-            util.listen(el,"click",()=>{
+        util.q(".btn-close, .close").forEach(el => {
+            util.listen(el, "click", () => {
                 util.id(el.dataset["id"]).style.display = "none";
             });
         });
-        util.q(".submit").forEach(el=>{
-            util.listen(el,"click",()=>{
+        util.q(".submit").forEach(el => {
+            util.listen(el, "click", () => {
                 this[el.dataset["func"]]();
             });
         });
@@ -97,7 +97,7 @@ const student = new function () {
         Получаем объект
         * */
         const st = data.get(el.dataset["id"]);
-        for(let k in st){
+        for (let k in st) {
             util.id(k).value = st[k];
         }
         util.id("edit").style.display = "block";
@@ -108,24 +108,24 @@ const student = new function () {
         activeStudent = el.dataset["id"];
     };
     const listeners = {edit: [], rm: []};
-    const clearListener = ()=>{
-        listeners.edit.forEach(el=>{
-            el.removeEventListener("click",edit);
+    const clearListener = () => {
+        listeners.edit.forEach(el => {
+            el.removeEventListener("click", edit);
         });
-        listeners.rm.forEach(el=>{
-            el.removeEventListener("click",rm);
+        listeners.rm.forEach(el => {
+            el.removeEventListener("click", rm);
         });
         listeners.edit = [];
         listeners.rm = [];
     };
-    const addListener = ()=>{
-        util.q("button.edit").forEach(el=>{
+    const addListener = () => {
+        util.q("button.edit").forEach(el => {
             listeners.edit.push(el);
-            util.listen(el,"click",()=>edit(el));
+            util.listen(el, "click", () => edit(el));
         });
-        util.q("button.rm").forEach(el=>{
+        util.q("button.rm").forEach(el => {
             listeners.rm.push(el);
-            util.listen(el,"click",()=>rm(el));
+            util.listen(el, "click", () => rm(el));
         });
     };
     this.render = () => {
@@ -149,5 +149,5 @@ const student = new function () {
         </td>
         </tr>
     `;
-    window.addEventListener("load",init);
+    window.addEventListener("load", init);
 };
