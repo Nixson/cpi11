@@ -75,6 +75,7 @@ const student = new function () {
         this.render();
         util.id("remove").style.display = "none";
     }
+    window.addEventListener("load", init);
     const init = () => {
         data.init();
         this.render();
@@ -157,5 +158,4 @@ const student = new function () {
         </td>
         </tr>
     `;
-    window.addEventListener("load", init);
 };
