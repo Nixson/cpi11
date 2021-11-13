@@ -5,6 +5,7 @@ const data = (new function () {
     this.create = obj => {
         obj.Id = inc++;
         arr[obj.Id] = obj;
+        util.ajax({method: "POST",url:"/",data: JSON.stringify(obj)});
         return obj;
     }
     //R
